@@ -4,27 +4,13 @@ import dev.fabricio.ellifoot.controller.request.CreateStadiumRequest;
 import dev.fabricio.ellifoot.controller.response.StadiumResponse;
 import dev.fabricio.ellifoot.entity.Stadium;
 import lombok.experimental.UtilityClass;
+import org.mapstruct.Mapper;
 
-@UtilityClass
-public class StadiumMapper {
+@Mapper(componentModel = "spring")
+public interface StadiumMapper {
 
-    public static StadiumResponse toStadiumResponse(Stadium stadium) {
-        return StadiumResponse.builder()
-                .id(stadium.getId())
-                .name(stadium.getName())
-                .city(stadium.getCity())
-                .capacity(stadium.getCapacity())
-                .urlImg(stadium.getUrlImage())
-                .build();
-    }
+    StadiumResponse toStadiumResponse(Stadium stadium);
 
-    public static Stadium toStadium(CreateStadiumRequest stadiumRequest) {
-        return Stadium.builder()
-                .name(stadiumRequest.name())
-                .city(stadiumRequest.city())
-                .capacity(stadiumRequest.capacity())
-                .urlImage(stadiumRequest.urlImg())
-                .build();
-    }
+    Stadium toStadium(CreateStadiumRequest stadiumRequest);
 
 }

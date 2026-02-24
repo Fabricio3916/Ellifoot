@@ -11,14 +11,16 @@ import org.springframework.stereotype.Service;
 public class CreateStadiumService {
 
     private final StadiumRepository stadiumRepository;
+    private final StadiumMapper stadiumMapper;
 
-    public CreateStadiumService(StadiumRepository stadiumRepository) {
+    public CreateStadiumService(StadiumRepository stadiumRepository, StadiumMapper stadiumMapper) {
         this.stadiumRepository = stadiumRepository;
+        this.stadiumMapper = stadiumMapper;
     }
 
     public StadiumResponse execute(CreateStadiumRequest request) {
-        Stadium stadium = stadiumRepository.save(StadiumMapper.toStadium(request));
-        return StadiumMapper.toStadiumResponse(stadium);
+        Stadium stadium = stadiumRepository.save(stadiumMapper.toStadium(request));
+        return stadiumMapper.toStadiumResponse(stadium);
     }
 
 }
