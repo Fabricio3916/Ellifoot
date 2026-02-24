@@ -1,5 +1,6 @@
 package dev.fabricio.ellifoot.mapper;
 
+import dev.fabricio.ellifoot.controller.request.CreateStadiumRequest;
 import dev.fabricio.ellifoot.controller.response.StadiumResponse;
 import dev.fabricio.ellifoot.entity.Stadium;
 import lombok.experimental.UtilityClass;
@@ -14,6 +15,15 @@ public class StadiumMapper {
                 .city(stadium.getCity())
                 .capacity(stadium.getCapacity())
                 .urlImg(stadium.getUrlImage())
+                .build();
+    }
+
+    public static Stadium toStadium(CreateStadiumRequest stadiumRequest) {
+        return Stadium.builder()
+                .name(stadiumRequest.name())
+                .city(stadiumRequest.city())
+                .capacity(stadiumRequest.capacity())
+                .urlImage(stadiumRequest.urlImg())
                 .build();
     }
 

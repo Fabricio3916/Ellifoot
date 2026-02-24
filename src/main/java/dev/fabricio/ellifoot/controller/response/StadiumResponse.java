@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-@Builder
-public class StadiumResponse {
 
-    private Long id;
-    private String name;
-    private String city;
-    private Integer capacity;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String urlImg;
-}
+@Builder
+public record StadiumResponse(
+        Long id,
+        String name,
+        String city,
+        Integer capacity,
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        String urlImg
+) {}

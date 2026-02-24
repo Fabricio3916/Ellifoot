@@ -1,30 +1,38 @@
 package dev.fabricio.ellifoot.controller;
 
+import dev.fabricio.ellifoot.controller.request.CreateStadiumRequest;
 import dev.fabricio.ellifoot.controller.response.StadiumResponse;
-import dev.fabricio.ellifoot.entity.Stadium;
+import dev.fabricio.ellifoot.service.CreateStadiumService;
 import dev.fabricio.ellifoot.service.FindStadiumService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/stadiums")
 public class StadiumController {
 
     private final FindStadiumService findStadiumService;
+    private final CreateStadiumService createStadiumService;
 
-    public StadiumController(FindStadiumService findStadiumService) {
+    public StadiumController(FindStadiumService findStadiumService, CreateStadiumService createStadiumService) {
         this.findStadiumService = findStadiumService;
+        this.createStadiumService = createStadiumService;
     }
 
-    @ResponseStatus(HttpStatus.OK)
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Page<StadiumResponse> getStadiums(Pageable pageable) {
         return findStadiumService.findAll(pageable);
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public StadiumResponse createStadium(@RequestBody CreateStadiumRequest request) {
+        return createStadiumService.execute(request);
+    }
+
+
 
 }
