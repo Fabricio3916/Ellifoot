@@ -5,6 +5,7 @@ import dev.fabricio.ellifoot.controller.response.ClubResponse;
 import dev.fabricio.ellifoot.controller.response.ClubDetailResponse;
 import dev.fabricio.ellifoot.service.CreateClubService;
 import dev.fabricio.ellifoot.service.FindClubService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class ClubController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClubDetailResponse create(@RequestBody CreateClubRequest request){
+    public ClubDetailResponse create(@Valid @RequestBody CreateClubRequest request){
         return createClubService.execute(request);
     }
 
