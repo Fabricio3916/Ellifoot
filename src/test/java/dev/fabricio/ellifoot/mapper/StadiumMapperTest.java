@@ -38,7 +38,7 @@ class StadiumMapperTest {
     }
 
     @Test
-    @DisplayName("toStadium should map CreateStadiumRequest to Stadium correctly")
+    @DisplayName("Stadium entity mapper test")
     void toStadium() {
 
         //Arrange
