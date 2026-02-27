@@ -1,5 +1,7 @@
 package dev.fabricio.ellifoot.controller;
 
+import dev.fabricio.ellifoot.config.security.annotations.CanReadPlayer;
+import dev.fabricio.ellifoot.config.security.annotations.CanWritePlayer;
 import dev.fabricio.ellifoot.controller.request.CreatePlayerRequest;
 import dev.fabricio.ellifoot.controller.response.PlayerDetailResponse;
 import dev.fabricio.ellifoot.controller.response.PlayerResponse;
@@ -23,18 +25,21 @@ public class PlayerController {
         this.createPlayerService = createPlayerService;
     }
 
+    @CanReadPlayer
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Page<PlayerResponse> findAll(Pageable pageable) {
         return findPlayerService.findAll(pageable);
     }
 
+    @CanReadPlayer
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PlayerDetailResponse findById(@PathVariable Long id) {
         return findPlayerService.findById(id);
     }
 
+    @CanWritePlayer
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PlayerResponse create(@Valid @RequestBody CreatePlayerRequest request) {
