@@ -23,6 +23,6 @@ public class Stadium {
     private Integer capacity;
 
     @Column(name = "url_img")
-    private String urlImage;
+    private String urlImg;
 
 }

@@ -2,7 +2,9 @@ package dev.fabricio.ellifoot.controller.request;
 
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
+@Builder
 public record CreateStadiumRequest(
 
         @NotBlank
